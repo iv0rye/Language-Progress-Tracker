@@ -1,1 +1,26 @@
-<p>sign-up works!</p>
+<div class="sign-up-container">
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <p-inputgroup>
+      <p-inputgroup-addon>
+        <i class="pi pi-user"></i>
+      </p-inputgroup-addon>
+      <input pInputText formControlName="username" placeholder="Username" />
+    </p-inputgroup>
+    
+    <p-inputgroup>
+      <p-inputgroup-addon>
+        <i class="pi pi-envelope"></i>
+      </p-inputgroup-addon>
+      <input pInputText formControlName="email" placeholder="Email" />
+    </p-inputgroup>
+    
+    <p-inputgroup>
+      <p-inputgroup-addon>
+        <i class="pi pi-lock"></i>
+      </p-inputgroup-addon>
+      <input pInputText formControlName="password" type="password" placeholder="Password" />
+    </p-inputgroup>
+    
+    <p-button type="submit" label="Register" icon="pi pi-check" iconPos="right" />
+  </form>
+</div>
