@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+const authRouter = require("./routes/authRoutes");
+
 app.use(cors());
 app.use(express.json());
 
@@ -18,6 +20,8 @@ async function connectDb(url){
 connectDb(URL)
     .then(console.log)
     .catch((err) => console.log(err));
+
+app.use("/api/auth", authRouter);
 
 app.listen(app.get("port_number"), (err) => {
     if (err){
