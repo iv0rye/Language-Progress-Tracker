@@ -6,7 +6,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 app.set("port_number", 8080);
 
 const URL = "mongodb://127.0.0.1:27017/productivity-app";
