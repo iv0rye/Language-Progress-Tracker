@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
             message: "Please provide a valid email address"
         },
         lowercase: true,
-        unique: [true, "This email already exists!"],
+        unique: [true, "This email is already linked to another account!!"],
         required: [true, "An email is required!"]
     },
     password: {
