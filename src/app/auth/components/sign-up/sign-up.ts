@@ -6,6 +6,8 @@ import { User } from '../../../models/user';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +17,8 @@ import { CardModule } from 'primeng/card';
     InputTextModule,
     ButtonModule,
     ReactiveFormsModule,
-    CardModule
+    CardModule,
+    RouterLink
   ],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',
@@ -26,8 +29,9 @@ import { CardModule } from 'primeng/card';
 
 export class SignUp {
   signUpForm: FormGroup;
+  errorMessage: string = "";
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router){
     this.signUpForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -40,6 +44,14 @@ export class SignUp {
       const user: User = this.signUpForm.value;
       
       console.log(user);
+      this.authService.signUp(user).subscribe({
+        next: (data: any) => {
+          this.router.navigate(["/auth/login"]);
+        },
+        error: (err: any) => {
+          this.errorMessage = err;
+        }
+      });
     }
   }
 }

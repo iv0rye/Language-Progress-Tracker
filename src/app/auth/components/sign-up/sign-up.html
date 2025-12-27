@@ -1,8 +1,7 @@
 <div class="flex flex-1 justify-center items-center">
   <p-card header="Sign Up" class="!rounded-2xl flex min-w-[65%]">
-    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-container flex-1">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-container">
       <div class="flex flex-col justify-center gap-2">
-        
         <p-inputgroup>
           <p-inputgroup-addon>
             <i class="pi pi-user"></i>
@@ -25,7 +24,13 @@
         </p-inputgroup>
         <p class="text-gray-700">Password must be 8 letters long</p>
         
-        <p-button type="submit" label="Register" icon="pi pi-check" iconPos="right" />
+        <div class="flex justify-between">
+          <a routerLink="/auth/login">
+              <p-button [raised]="true" variant="outlined" label="Go To Login Page"/>
+          </a>
+
+          <p-button type="submit" [raised]="true" label="Sign Up"/>
+        </div>
       </div>
     </form>
   </p-card>
