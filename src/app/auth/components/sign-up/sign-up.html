@@ -1,26 +1,32 @@
-<div class="sign-up-container">
-  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-    <p-inputgroup>
-      <p-inputgroup-addon>
-        <i class="pi pi-user"></i>
-      </p-inputgroup-addon>
-      <input pInputText formControlName="username" placeholder="Username" />
-    </p-inputgroup>
-    
-    <p-inputgroup>
-      <p-inputgroup-addon>
-        <i class="pi pi-envelope"></i>
-      </p-inputgroup-addon>
-      <input pInputText formControlName="email" placeholder="Email" />
-    </p-inputgroup>
-    
-    <p-inputgroup>
-      <p-inputgroup-addon>
-        <i class="pi pi-lock"></i>
-      </p-inputgroup-addon>
-      <input pInputText formControlName="password" type="password" placeholder="Password" />
-    </p-inputgroup>
-    
-    <p-button type="submit" label="Register" icon="pi pi-check" iconPos="right" />
-  </form>
+<div class="flex flex-1 justify-center items-center">
+  <p-card header="Sign Up" class="!rounded-2xl flex min-w-[65%]">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-container flex-1">
+      <div class="flex flex-col justify-center gap-2">
+        
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-user"></i>
+          </p-inputgroup-addon>
+          <input pInputText formControlName="username" placeholder="Username" />
+        </p-inputgroup>
+        
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-envelope"></i>
+          </p-inputgroup-addon>
+          <input pInputText formControlName="email" placeholder="Email" />
+        </p-inputgroup>
+
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-lock"></i>
+          </p-inputgroup-addon>
+          <input pInputText formControlName="password" type="password" placeholder="Password" />
+        </p-inputgroup>
+        <p class="text-gray-700">Password must be 8 letters long</p>
+        
+        <p-button type="submit" label="Register" icon="pi pi-check" iconPos="right" />
+      </div>
+    </form>
+  </p-card>
 </div>

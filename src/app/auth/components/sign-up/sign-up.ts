@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { User } from '../../../models/user';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,10 +14,14 @@ import { ButtonModule } from 'primeng/button';
     InputGroupAddonModule,
     InputTextModule,
     ButtonModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    CardModule
   ],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',
+  host: {
+    class: 'flex flex-1'
+  }
 })
 
 export class SignUp {
