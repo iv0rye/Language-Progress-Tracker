@@ -62,5 +62,13 @@ module.exports = {
         } catch (err) {
             res.status(422).json({ error: err.message });
         }
+    },
+    logOut: async (req, res) => {
+        try {
+            res.cookie("token", '', { ...cookieOptions, maxAge: 1 })
+            res.status(200).json({ message: "Logged out successfully" });
+        } catch(err) {
+            res.status(422).json({ error: err.message });
+        }
     }
 }
