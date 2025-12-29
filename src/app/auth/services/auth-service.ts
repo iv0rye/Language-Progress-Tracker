@@ -19,6 +19,10 @@ export class AuthService {
   }
 
   logIn(user: User){
-    return this.http.post(API_URL + "/log-in", user, httpOptions);
+    return this.http.post(API_URL + "/log-in", user, { withCredentials: true });
+  }
+
+  getCurrentUser(){
+    return this.http.get(API_URL + "/me", { withCredentials: true });
   }
 }

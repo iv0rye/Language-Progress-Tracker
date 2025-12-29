@@ -1,1 +1,29 @@
-<p>log-in works!</p>
+<div class="flex flex-1 justify-center items-center">
+  <p-card header="Log In" class="!rounded-2xl flex min-w-[65%]">
+    <form [formGroup]="logInForm" (ngSubmit)="onSubmit()" class="log-in-container">
+      <div class="flex flex-col justify-center gap-2">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-envelope"></i>
+          </p-inputgroup-addon>
+          <input pInputText formControlName="email" placeholder="Email" />
+        </p-inputgroup>
+
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-lock"></i>
+          </p-inputgroup-addon>
+          <input pInputText formControlName="password" type="password" placeholder="Password" />
+        </p-inputgroup>
+        
+        <div class="flex justify-between">
+          <a routerLink="/auth/signup">
+              <p-button [raised]="true" variant="outlined" label="Register a New Account"/>
+          </a>
+
+          <p-button type="submit" [raised]="true" label="Log In"/>
+        </div>
+      </div>
+    </form>
+  </p-card>
+</div>
