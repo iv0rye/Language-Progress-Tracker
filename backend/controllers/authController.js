@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 const cookieOptions = {
     httpOnly: true,
@@ -55,7 +56,7 @@ module.exports = {
 
             res.status(200).json({
                 user: {
-                    username: username,
+                    username: user.username,
                     email: email
                 }
             })

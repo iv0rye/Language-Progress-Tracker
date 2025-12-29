@@ -15,7 +15,7 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
-app.use(cookieParser);
+app.use(cookieParser());
 
 app.set("port_number", process.env.PORT);
 
@@ -23,7 +23,7 @@ const DB_URL = process.env.DB_URL;
 
 async function connectDb(url){
     await mongoose.connect(url);
-    return ("Connected succesfully");
+    return ("Connected succesfully to mongoDb");
 }
 
 connectDb(DB_URL)
