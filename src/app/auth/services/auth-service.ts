@@ -17,4 +17,8 @@ export class AuthService {
   signUp(user: User){
     return this.http.post(API_URL + "/register", user, httpOptions);
   }
+
+  logIn(user: User){
+    return this.http.post(API_URL + "/log-in", user, httpOptions);
+  }
 }
