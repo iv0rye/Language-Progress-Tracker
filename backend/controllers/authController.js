@@ -32,6 +32,35 @@ module.exports = {
         }
     },
     logIn: async (req, res) => {
+        try {
+            let { email, password } = req.body;
 
+            const user = await User.findOne({
+                email: email
+            })
+
+            if (!user) {
+                res.status(401).json({ message: "Account was not found" });
+            }
+
+            const isMatch = await bcrypt.compare(password, user.password);
+
+            if (!isMatch) {
+                res.status(401).json({ message: "Account was not found" });
+            }
+
+            const token = generateToken(user._id);
+
+            res.cookie('token', token, cookieOptions);
+
+            res.status(200).json({
+                user: {
+                    username: username,
+                    email: email
+                }
+            })
+        } catch (err) {
+            res.status(422).json({ error: err.message });
+        }
     }
 }

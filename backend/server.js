@@ -14,16 +14,16 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser);
 
-app.set("port_number", 8080);
+app.set("port_number", process.env.PORT);
 
-const URL = "mongodb://127.0.0.1:27017/productivity-app";
+const DB_URL = process.env.DB_URL;
 
 async function connectDb(url){
     await mongoose.connect(url);
     return ("Connected succesfully");
 }
 
-connectDb(URL)
+connectDb(DB_URL)
     .then(console.log)
     .catch((err) => console.log(err));
 
