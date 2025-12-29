@@ -10,7 +10,10 @@ const app = express();
 
 const authRouter = require("./routes/authRoutes");
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser);
 
