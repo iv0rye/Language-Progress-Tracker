@@ -37,7 +37,7 @@ module.exports = {
 
             const user = await User.findOne({
                 email: email
-            })
+            }).select("+password");
 
             if (!user) {
                 res.status(401).json({ message: "Account was not found" });
@@ -68,6 +68,13 @@ module.exports = {
             res.cookie("token", '', { ...cookieOptions, maxAge: 1 })
             res.status(200).json({ message: "Logged out successfully" });
         } catch(err) {
+            res.status(422).json({ error: err.message });
+        }
+    },
+    returnCurrentUser: async (req, res) => {
+        try {
+            res.status(200).json(req.user);
+        } catch (err) {
             res.status(422).json({ error: err.message });
         }
     }
