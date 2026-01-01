@@ -1,6 +1,8 @@
 <p>timer works!</p>
 
-<p>{{minutes}} : {{hours}} : {{seconds}}</p>
+<p>{{hours}} : {{minutes}} : {{seconds}}</p>
 <p>{{totalSessionTime$ | async }}</p>
 
-<button (click)="toggleSession()">toggle</button>
+<p-button (click)="toggleSession()">toggle</p-button>
+<p-button (click)="resumeSession()">resume</p-button>
+<p-button (click)="pauseSession()">pause</p-button>

@@ -3,17 +3,21 @@ import { Session } from '../../../models/session';
 import { BehaviorSubject, EMPTY, interval, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
+import { ButtonModule } from "primeng/button";
 
 @Component({
   selector: 'app-timer',
   imports: [
-    AsyncPipe
-  ],
+    AsyncPipe,
+    ButtonModule
+],
   templateUrl: './timer.html',
   styleUrl: './timer.css',
 })
 export class Timer {
   session: Session = new Session();
+
+  sessionOngoing: boolean = false;
 
   seconds: number = 0;
   minutes: number = 0;
@@ -33,10 +37,19 @@ export class Timer {
   }
 
   toggleSession() {
-    this.isActive$.value ? this.stopSession() : this.startSession();
+    this.sessionOngoing ? this.stopSession() : this.startSession();
+  }
+
+  pauseSession() {
+    this.isActive$.next(false);
+  }
+
+  resumeSession() {
+    this.isActive$.next(true);
   }
 
   startSession() {
+    this.sessionOngoing = true;
     this.session = new Session();
     this.totalSessionTime$.next(0);
     this.resetTime();
@@ -44,6 +57,7 @@ export class Timer {
   }
 
   stopSession() {
+    this.sessionOngoing = false;
     this.isActive$.next(false);
   }
 
