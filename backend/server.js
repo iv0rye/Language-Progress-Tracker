@@ -9,6 +9,7 @@ dotenv.config();
 const app = express();
 
 const authRouter = require("./routes/authRoutes");
+const sessionRouter = require("./routes/sessionRoutes");
 
 app.use(cors({
     origin: 'http://localhost:4200',
@@ -31,6 +32,7 @@ connectDb(DB_URL)
     .catch((err) => console.log(err));
 
 app.use("/api/auth", authRouter);
+app.use("/api/session", sessionRouter);
 
 app.listen(app.get("port_number"), (err) => {
     if (err){
