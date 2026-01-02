@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 
 const sessionSchema = new mongoose.Schema({
     user: {
-        type: Types.objectId,
+        type: mongoose.Schema.Types.objectId,
         ref: "User",
-        required: [true, "Provide a user for the session"]
+        required: [true, "Provide a user for the session"],
+        index: true
     },
     totalTime: {
         type: Number,
@@ -12,17 +13,19 @@ const sessionSchema = new mongoose.Schema({
             validator: (value) => {
                 return value > 5;
             },
-            message: "Session time is too short!"
+            message: "Session time is 5 seconds or shorter!"
         },
         required: [true, "Provide total time"]
     },
     category: {
         type: String,
-        required: [true, "Provide a category"]
+        required: [true, "Provide a category"],
+        trim: true
     },
     date: {
-        type: String,
-        required: [true, "Provide a date"]
+        type: Date,
+        required: [true, "Provide a date"],
+        default: Date.now
     }
 })
 
