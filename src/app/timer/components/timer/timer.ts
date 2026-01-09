@@ -20,7 +20,7 @@ export class Timer {
   // TODO: Implement all sessions get feature
   allSessions: Array<any> = []; 
 
-  category: string = "";
+  category: string = "Japanese";
 
   sessionOngoing: boolean = false;
   errorMessage: string = "";
@@ -29,7 +29,7 @@ export class Timer {
   minutes: number = 0;
   hours: number = 0;
   
-  private isActive$ = new BehaviorSubject<boolean>(true);
+  private isActive$ = new BehaviorSubject<boolean>(false);
   totalSessionTime$ = new BehaviorSubject<number>(0);
 
   constructor(private destroyRef: DestroyRef, private sessionService: SessionService){
