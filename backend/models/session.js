@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const sessionSchema = new mongoose.Schema({
     user: {
-        type: mongoose.Schema.Types.objectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: [true, "Provide a user for the session"],
         index: true
