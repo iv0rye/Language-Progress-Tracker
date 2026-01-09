@@ -5,6 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { ButtonModule } from "primeng/button";
 import { SessionService } from '../../services/session-service';
+import { AuthService } from '../../../auth/services/auth-service';
 
 @Component({
   selector: 'app-timer',
@@ -16,10 +17,10 @@ import { SessionService } from '../../services/session-service';
   styleUrl: './timer.css',
 })
 export class Timer {
-  session: Session = new Session();
-
   // TODO: Implement all sessions get feature
   allSessions: Array<any> = []; 
+
+  category: string = "";
 
   sessionOngoing: boolean = false;
   errorMessage: string = "";
@@ -33,10 +34,13 @@ export class Timer {
 
   constructor(private destroyRef: DestroyRef, private sessionService: SessionService){
     this.isActive$.pipe(
+      // if timer is active, sets interval to 1 second, otherwise sets to empty observable
       switchMap(active => active ? interval(1000) : EMPTY),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe(() => {
+      // increments total session time
       this.totalSessionTime$.next(this.totalSessionTime$.value + 1);
+      // updates time formatting
       this.updateTimeFormatting();
     })
   }
@@ -55,7 +59,6 @@ export class Timer {
 
   startSession() {
     this.sessionOngoing = true;
-    this.session = new Session();
     this.totalSessionTime$.next(0);
     this.resetTime();
     this.isActive$.next(true);
@@ -64,12 +67,16 @@ export class Timer {
   stopSession() {
     this.sessionOngoing = false;
     this.isActive$.next(false);
-    this.totalSessionTime$.next(0);
-    this.resetTime();
 
-    this.sessionService.addSession(this.session).subscribe({
+    const session = new Session();
+
+    session.totalTime = this.totalSessionTime$.value;
+    session.category = this.category;
+
+    this.sessionService.addSession(session).subscribe({
       next: (data: any) => {
-
+        this.totalSessionTime$.next(0);
+        this.resetTime();
       },
       error: (err: any) => {
         this.errorMessage = err;
