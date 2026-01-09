@@ -1,6 +1,9 @@
-<p>{{hours}} : {{minutes}} : {{seconds}}</p>
-<p>{{totalSessionTime$ | async }}</p>
-
-<p-button (click)="toggleSession()">toggle</p-button>
-<p-button (click)="resumeSession()">resume</p-button>
-<p-button (click)="pauseSession()">pause</p-button>
+<div class="flex flex-1 justify-center items-center h-full">
+    <p-card header="Log In" class="!rounded-2xl flex flex-1 m-2">
+        <p>{{hours}} : {{minutes}} : {{seconds}}</p>
+        <p>{{totalSessionTime$ | async }}</p>
+        <p-button (click)="toggleSession()">toggle</p-button>
+        <p-button (click)="resumeSession()">resume</p-button>
+        <p-button (click)="pauseSession()">pause</p-button>
+    </p-card>
+</div>

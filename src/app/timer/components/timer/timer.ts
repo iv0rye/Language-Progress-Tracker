@@ -6,15 +6,20 @@ import { AsyncPipe } from '@angular/common';
 import { ButtonModule } from "primeng/button";
 import { SessionService } from '../../services/session-service';
 import { AuthService } from '../../../auth/services/auth-service';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-timer',
   imports: [
     AsyncPipe,
-    ButtonModule
+    ButtonModule,
+    CardModule
 ],
   templateUrl: './timer.html',
   styleUrl: './timer.css',
+  host: {
+    class: 'flex flex-1'
+  }
 })
 export class Timer {
   // TODO: Implement all sessions get feature
